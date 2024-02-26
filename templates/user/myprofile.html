@@ -1,0 +1,64 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<style>
+    .form-control{
+    margin:1%;
+    }
+    #dv{
+    display:none;
+    }
+</style>
+<script>
+    {% if not request.session.user %}
+    alert('You Have to login first..');
+    location.href='/user/signin/'
+    {% endif %}
+    function demo()
+    {
+    document.getElementById("dv").style.display="block";
+    }
+</script>
+<div class="text-center fs-2 my-2">My<b class="txt-mycolor ">Profile</b>
+</div>
+<div class="row">
+    <div class="col-md-10 mx-auto">
+       {% for i in mdata %}
+        <div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-5 p-5 ">
+      <img src="/{{i.upic}}" style="height:250px; width:250px; border-radius:50% 50% 50% 50%; border:8px solid #f2f2f2; " class="img-fluid " alt="...">
+    </div>
+    <div class="col-md-7 pt-5">
+      <div class="card-body">
+
+        <p class="card-text" style="line-height:35px;">
+            <i class="fa-solid fa-user"></i>   {{i.uname}}<br>
+
+            <i class="fa-solid fa-envelope">  {{i.email}}</i><br>
+            <i class="fa-solid fa-lock"></i>   {{i.passwd}}<br>
+            <i class="fa-solid fa-location-dot"></i>  {{i.address}}<br>
+            <A href="#" class="btn btn-sm btn-success " onclick="demo()">Edit Profile  <i class="fa-solid fa-pen-to-square"></i> </A>
+        </p>
+      </div>
+    </div>
+  </div>
+            </div>
+        {% endfor %}
+</div>
+
+</div>
+<div class="row bg-mycolor py-5" id="dv">
+    <div class="col-sm-6 mx-auto">
+       <form method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+            Name <input type="text" placeholder="Name" class="form-control" name="name">
+
+            Password <input type="text" placeholder="Password" class="form-control" name="passwd">
+            Picture <input type="file" name="fu" class="form-control">
+            Address <textarea class="form-control" name="address" ></textarea>
+            <input type="submit" value="Save" class="btn bg-mycolor text-light">
+        </form>
+    </div>
+</div>
+{% endblock %}

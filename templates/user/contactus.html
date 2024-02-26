@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<style>
+    .form-control
+    {
+    height:45px;
+    margin-bottom:5%;
+
+    }
+</style>
+<div class="text-center fs-2 my-2">
+    Contact<b class="txt-mycolor"> Us</b>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 mx-auto">
+            <div class="row">
+                <div class="col-sm-6">
+                    <form method="post">
+                        {% csrf_token %}
+                        <b>Name</b><input type="text" name="name" placeholder="Name.." class="form-control"/>
+                        <b>Email</b><input type="email" name="email" placeholder="Email.." class="form-control"/>
+                        <b>Mobile</b><input type="number" name="mobile" placeholder="Mobile.." class="form-control"/>
+                        <b>Message</b><textarea style="min-height:80px; resize:none;" name="message" placeholder="Enter Your Message.." class="form-control"></textarea>
+                        <input type="submit" value="Save" class="btn bg-mycolor"/>
+                        </form>
+
+                </div>
+                <div class="col-sm-6 ">
+                <img src="{% static 'images/oip.jpeg'%}" class=" img-fluid" style="background-size:cover; min-height:420px;"> </div>
+            </div>
+            </div>
+        </div>
+
+{% endblock %}

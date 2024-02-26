@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% load  static %}
+{% block content %}
+<div class="text-center fs-2 my-2">
+    About<b class="txt-mycolor"> Us</b>
+</div>
+<div class="row">
+    <div class="col-lg-12 " style="background:url('{% static 'images/R.png'%}');">
+
+        <div class="row">
+
+            <div class="col-sm-6 px-3 pt-4" style="text-align:center; font-size:18px;">
+
+               <p class="my-2 " style="text-align:justify;"> We are a team of experienced event planners who specialize in creating unforgettable experiences for our clients.
+                   Our team is made up of professionals from diverse backgrounds, including marketing, hospitality, and design.
+                   We have a passion for creating unique events that leave a lasting impression on our clients and their guests.
+               </p>
+                <h3>Our Services</h3>
+                <p style="text-align:justify;">We offer a wide range of event planning services to meet the needs of our clients.
+                    Whether you’re planning a corporate event, wedding, or private party, we have the expertise to make your vision a
+                    reality.</p>
+                <h3>Our Approach</h3>
+                <p style="text-align:justify;">At our core, we believe that every event should be unique and reflect the personality of our clients. That’s why we take a personalized approach to event planning. We work closely with you to understand your vision and bring it to life in a way that exceeds your expectations.</p>
+            </div>
+            <div class="col-sm-6 mt-3">
+                 <img src="{% static 'images/aboutus.jpg'%}" class=" img-fluid" style="background-size:cover; min-height:450px; min-width:100%;"> </div>
+            </div>
+
+    </div>
+
+{% endblock %}

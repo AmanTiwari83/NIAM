@@ -1,0 +1,87 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+ <div class="row slider">
+
+        <div class="col-sm-12 p-2">
+            <!--start slider-->
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/1.jpeg'%}" style="max-height:500px; border-radius:20px;" class="d-block w-100" alt="...">
+    </div>
+      {% for i in sdata %}
+    <div class="carousel-item  ">
+      <img src="/{{i.spic}}" style="max-height:500px;border-radius:20px;" class="d-block w-100" alt="...">
+    </div>
+      {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+            <!--end slider-->
+        </div>
+    </div>
+
+    <div class="row category py-3 mt-2" style="background:#cdcdcd;">
+        <div class="col-lg-12 fs-2 text-center mb-3">Event's<b class="txt-mycolor">Category</b></div>
+        {% for x in cdata %} <!--[row,row]-->
+        <div class="col-lg-2 col-mb-4 col-sm-6 mx-auto">
+            <!--start category-->
+            <div class="card">
+                <img src="/{{x.cpic}}" class="card-img-top" style="max-height:150px;"/>
+                     <div class="card-body">
+                       <a href="/user/event/?msg={{x.id}}" style="text-decoration:none; color:black;"> <p class="text-center" style="max-height:250px;"><b>{{x.cname}}</b></p>
+                    </a>
+                     <br/>
+
+                     </div>
+            </div>
+            <!--end category-->
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row product py-3" style="background:white !important;">
+        <div class="fs-2  text-center mb-3">Upcoming<b class="txt-mycolor"> Event</b></div>
+         <div class="col-sm-10 mx-auto ">
+             <div class="row">
+                 {% for a in edata %}
+                 <!-- start upcomming event-->
+                 <div class="col-lg-3 col-md-6 col-sm-12 my-4">
+                     <div class="card">
+                         <img src="/{{a.event_picture}}" style="max-height:150px" class="img-card-top"/>
+                     <div class="card-body">
+                         <b>{{a.event_category}}</b><br/>
+
+                         {{a.speaker_name}}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/{{a.speaker_picture}}" clas="img-thumbnail float-end" style="max-height:45px;"/><br/>
+                         {{a.hotel}}<br/>
+
+                         <i class="fa-solid fa-indian-rupee-sign"></i>
+                         <b>{{a.dprice}}/-</b> <s>{{a.price}}/-</s><br/><br>
+
+                          <a href="/user/viewdetails?msg={{a.id}}" class="btn btn-sm rounded-pill  bg-mycolor text-light">More Info.</a>
+
+                     </div>
+                     </div>
+
+                 </div>
+                 <!-- end upcomming event-->
+                 {% endfor %}
+             </div>
+         </div>
+
+    </div>
+{% endblock %}

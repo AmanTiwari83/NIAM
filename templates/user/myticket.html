@@ -1,0 +1,67 @@
+{% extends 'base.html'%}
+{% load  static %}
+
+{% block content %}
+{% if not request.session.user %}
+<script>
+    alert('You have to login first.')
+    location.href='/user/signin/'
+</script>
+
+{% endif %}
+<div class="fs-2 text-center mt-2">
+    My <b class="txt-mycolor ">Tickets</b>
+</div>
+<div class="row">
+    <div class="col-sm-10 mx-auto">
+        <!--Card START-->
+        <div class="card mb-3">
+  <div class="row g-0">
+
+
+    </div>
+    <div class="col-md-12" style="overflow-x:scroll;">
+      <div class="card-body">
+
+    <table class="table table-hover">
+        <tr style="font-weight:bold;">
+
+            <td>Ticket No :</td>
+            <td>Event Picture :</td>
+            <td>Event Name :</td>
+            <td>Speaker Detail :</td>
+            <td>Event Date :</td>
+            <td>Booking Date :</td>
+            <td>Cancel</td>
+
+        </tr>
+        {% for i in myticket %}
+        <tr>
+            <td>EMS100{{i.id}} </td>
+            <td> <img src="/{{ i.event_picture }}"  style="height:100px;" class="img-fluid rounded-start" alt="..."> </td>
+
+            <td>{{i.event_name}}</td>
+            <td>
+                {{i.speaker_name}}
+
+            </td>
+            <td>
+                {{ i.event_dates }}
+            </td>
+            <td>{{i.booking_date}}</td>
+
+
+            <td><a href="/user/mytickets?bid={{i.id}}" class="btn btn-sm bg-danger rounded-pill text-light">&nbsp;&nbsp;Cancel<i class="fa-solid fa-trash"></i> </a> </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+        <!--Card end-->
+    </div>
+
+
+    {% endblock %}
